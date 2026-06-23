@@ -36,6 +36,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# source certificates folder (public/certificates/ is used for serving)
+/Certificates
+
+# personal photos (not needed for the site)
+/Habib's Picture.jpg
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
