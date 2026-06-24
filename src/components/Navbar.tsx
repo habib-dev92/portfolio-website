@@ -48,7 +48,7 @@ export default function Navbar() {
       />
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         <motion.a
-          href="#"
+          href="/"
           className="flex items-center gap-3 group"
           whileHover={{ scale: 1.02 }}
         >

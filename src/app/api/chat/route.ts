@@ -68,7 +68,7 @@ async function queryOpenRouter(messages: { role: string; content: string }[]) {
       "X-Title": "Habib Ul Haq Portfolio",
     },
     body: JSON.stringify({
-      model: "deepseek/deepseek-chat-v3-0324:free",
+      model: "openrouter/free",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         ...messages,

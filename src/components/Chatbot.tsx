@@ -195,13 +195,7 @@ function formatMessage(text: string): React.ReactNode[] {
   return nodes;
 }
 
-const WELCOME_MESSAGE = `Hi! I'm **Habib's AI assistant**. I can tell you all about his **skills**, **projects**, and **experience**.
-
-Here's what you can ask me:
-- *What technologies does Habib work with?*
-- *Tell me about his projects?*
-- *What is CostCalc AI?*
-- *Does he have experience with RAG?*`;
+const WELCOME_MESSAGE = `Hi! I'm **Habib's AI assistant**. I can tell you all about his **skills**, **projects**, and **experience**.`;
 
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
@@ -294,7 +288,7 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-48px)] max-h-[calc(100vh-10rem)] rounded-2xl border border-white/10 bg-zinc-950/95 backdrop-blur-2xl shadow-2xl overflow-hidden flex flex-col"
+            className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-48px)] max-h-[calc(100vh-10rem)] min-h-[420px] rounded-2xl border border-white/10 bg-zinc-950/95 backdrop-blur-2xl shadow-2xl overflow-hidden flex flex-col"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3.5 border-b border-white/5 bg-white/[0.02]">
