@@ -177,7 +177,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           </span>
         </div>
       </div>
-      <div className="p-6 relative">
+      <div className="p-5 sm:p-6 relative">
         <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         <span className="text-xs text-accent font-medium tracking-wide">{project.category}</span>
         <h3 className="text-lg font-semibold mt-1.5 mb-2 group-hover:text-accent transition-colors duration-300">{project.title}</h3>
@@ -199,7 +199,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
 export default function Portfolio() {
   return (
-    <section id="work" className="relative py-32 border-t border-white/5">
+    <section id="work" className="relative py-20 sm:py-32 border-t border-white/5">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,rgba(74,222,128,0.03),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(74,222,128,0.03),transparent_50%)]" />
       <div className="max-w-7xl mx-auto px-6">
@@ -208,7 +208,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-12 sm:mb-16"
         >
           <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-zinc-500 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-accent/60" />

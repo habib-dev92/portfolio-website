@@ -71,7 +71,7 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 w-full">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-12 md:gap-8">
-          <div className="flex-1 max-w-2xl pt-8 md:pt-16">
+          <div className="flex-1 max-w-2xl pt-4 sm:pt-8 md:pt-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -90,7 +90,7 @@ export default function Hero() {
               </span>
             </motion.div>
 
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight mb-6">
+            <h1 className="text-[2.2rem] sm:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight mb-5 sm:mb-6">
               {headingLines.map((line, i) => (
                 <motion.span
                   key={i}
@@ -118,7 +118,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="text-zinc-500 text-base sm:text-lg max-w-lg mb-10 leading-relaxed"
+              className="text-zinc-500 text-sm sm:text-lg max-w-lg mb-8 sm:mb-10 leading-relaxed"
             >
               Specializing in AI-powered full-stack applications — from RAG document Q&amp;A systems and logistics optimization engines to financial modeling tools and SaaS platforms.
             </motion.p>
@@ -172,7 +172,7 @@ export default function Hero() {
                 />
                 <div className="absolute -inset-6 rounded-2xl border border-accent/10 animate-pulse-glow" />
                 <div className="absolute -inset-6 rounded-2xl border border-accent/5 animate-float-slow pointer-events-none" />
-                <div className="relative h-48 w-48 sm:h-56 sm:w-56 md:h-72 md:w-72 rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl shadow-accent/5">
+                <div className="relative h-36 w-36 sm:h-56 sm:w-56 md:h-72 md:w-72 rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl shadow-accent/5">
                   <img
                     src="/logo.jpg"
                     alt="Logo"

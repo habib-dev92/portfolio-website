@@ -234,7 +234,7 @@ function CertificateCard({ cert, index }: { cert: typeof certificates[0]; index:
 
 export default function Certificates() {
   return (
-    <section id="certificates" className="relative py-32 border-t border-white/5">
+    <section id="certificates" className="relative py-20 sm:py-32 border-t border-white/5">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(74,222,128,0.03),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(74,222,128,0.03),transparent_50%)]" />
       <div className="max-w-7xl mx-auto px-6">
@@ -243,7 +243,7 @@ export default function Certificates() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-12 sm:mb-16"
         >
           <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-zinc-500 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-accent/60" />

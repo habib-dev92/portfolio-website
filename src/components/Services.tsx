@@ -109,7 +109,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       style={{ rotateX: springRotateX, rotateY: springRotateY }}
-      className="group relative p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:shadow-glow transition-all duration-500 overflow-hidden"
+      className="group relative p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:shadow-glow transition-all duration-500 overflow-hidden"
     >
       {/* Animated gradient border overlay on hover */}
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ padding: '1px', background: 'linear-gradient(135deg, rgba(74,222,128,0.3), transparent 40%, transparent 60%, rgba(74,222,128,0.15))', mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', maskComposite: 'exclude', WebkitMaskComposite: 'xor' }} />
@@ -142,7 +142,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-32 border-t border-white/5">
+    <section id="services" className="relative py-20 sm:py-32 border-t border-white/5">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(74,222,128,0.03),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(74,222,128,0.03),transparent_50%)]" />
       <div className="max-w-7xl mx-auto px-6">
@@ -151,7 +151,7 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-12 sm:mb-16"
         >
           <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-zinc-500 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-accent/60" />

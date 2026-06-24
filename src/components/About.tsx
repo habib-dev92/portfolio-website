@@ -61,7 +61,7 @@ export default function About() {
   useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="relative py-32 overflow-hidden">
+    <section id="about" className="relative py-20 sm:py-32 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.02] to-transparent pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(74,222,128,0.04),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(74,222,128,0.03),transparent_50%)]" />
@@ -73,7 +73,7 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-20"
+          className="mb-16 sm:mb-20"
         >
           <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-zinc-500 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-accent/60" />
@@ -134,7 +134,7 @@ export default function About() {
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 className="relative group"
               >
-                <div className="relative p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-accent/15 hover:bg-accent/[0.02] transition-all duration-500">
+                <div className="relative p-4 sm:p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-accent/15 hover:bg-accent/[0.02] transition-all duration-500">
                   <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-accent/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute top-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative z-10">

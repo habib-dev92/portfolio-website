@@ -89,7 +89,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-32 overflow-hidden">
+    <section id="contact" className="relative py-20 sm:py-32 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.02] to-transparent pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(74,222,128,0.05),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(74,222,128,0.03),transparent_50%)]" />
@@ -103,7 +103,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-12 sm:mb-16"
         >
           <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-zinc-500 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-accent/60" />
@@ -146,7 +146,7 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-3"
           >
-            <div className="relative rounded-2xl border border-white/5 bg-white/[0.015] p-8 transition-all duration-500 focus-within:border-accent/20 focus-within:shadow-[0_0_40px_rgba(74,222,128,0.05)]">
+            <div className="relative rounded-2xl border border-white/5 bg-white/[0.015] p-6 sm:p-8 transition-all duration-500 focus-within:border-accent/20 focus-within:shadow-[0_0_40px_rgba(74,222,128,0.05)]">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/[0.02] to-transparent pointer-events-none" />
               <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-accent/10 to-transparent" />
               <div className="absolute inset-0 rounded-2xl ring-1 ring-accent/0 focus-within:ring-accent/10 transition-all duration-500 pointer-events-none" />
