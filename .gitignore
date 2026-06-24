@@ -42,6 +42,9 @@ yarn-error.log*
 # personal photos (not needed for the site)
 /Habib's Picture.jpg
 
+# nested git repo (accidentally tracked)
+/portfolio-website
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
