@@ -71,7 +71,7 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 w-full">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-12 md:gap-8">
-          <div className="flex-1 max-w-2xl pt-4 sm:pt-8 md:pt-16">
+          <div className="flex-1 max-w-2xl pt-24 sm:pt-20 md:pt-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -157,7 +157,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex-shrink-0 perspective-[800px] mt-4 md:mt-20"
+            className="flex-shrink-0 perspective-[800px] mt-36 sm:mt-28 md:mt-36"
           >
             <motion.div
               style={{ rotateX: springY, rotateY: springX }}
