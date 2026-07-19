@@ -54,6 +54,9 @@ resume*.pdf
 redesign.md
 notes*.md
 
+# blog source markdown files (content is embedded in src/data/blog.ts)
+blog*.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
