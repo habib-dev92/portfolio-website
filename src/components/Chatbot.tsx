@@ -195,7 +195,7 @@ function formatMessage(text: string): React.ReactNode[] {
   return nodes;
 }
 
-const WELCOME_MESSAGE = `Hi! I'm **Habib's AI assistant**. I can tell you all about his **skills**, **projects**, and **experience**.`;
+const WELCOME_MESSAGE = `Hi! I'm **Habib's AI assistant**. I can tell you all about his **15+ years in supply chain management**, **AI & full-stack projects**, **services**, and more. Ask me anything!`;
 
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
@@ -342,7 +342,8 @@ export default function Chatbot() {
                     {msg.role === "assistant" && (
                       <button
                         onClick={() => copyToClipboard(msg.content, i)}
-                        className="absolute -bottom-5 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-[10px] text-zinc-600 hover:text-zinc-400"
+                        className="absolute -bottom-5 right-0 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 text-[10px] text-zinc-600 hover:text-zinc-400"
+                        aria-label="Copy message"
                       >
                         {copiedIndex === i ? "Copied" : "Copy"}
                       </button>
@@ -374,7 +375,7 @@ export default function Chatbot() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Ask about my work..."
-                  className="flex-1 px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-sm text-foreground placeholder-zinc-600 focus:outline-none focus:border-accent/40 focus:bg-white/[0.03] transition-all"
+                  className="flex-1 px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-accent/40 focus:bg-white/[0.03] transition-all"
                 />
                 <button
                   onClick={sendMessage}

@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-
 export default function AmbientBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -13,7 +11,7 @@ export default function AmbientBackground() {
     if (!ctx) return;
 
     let animationId: number;
-    let mouse = { x: 0, y: 0 };
+    const mouse = { x: 0, y: 0 };
     const particles: { x: number; y: number; vx: number; vy: number; size: number; alpha: number }[] = [];
 
     const resize = () => {

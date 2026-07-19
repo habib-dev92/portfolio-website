@@ -1,58 +1,33 @@
 import Hero from "@/components/Hero";
+import TechMarquee from "@/components/TechMarquee";
 import About from "@/components/About";
+import Experience from "@/components/Experience";
+import Skills from "@/components/Skills";
 import Services from "@/components/Services";
-import Certificates from "@/components/Certificates";
 import Portfolio from "@/components/Portfolio";
+import Certificates from "@/components/Certificates";
+import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Chatbot from "@/components/Chatbot";
+import BackToTop from "@/components/BackToTop";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <div className="relative z-10 flex items-center justify-center">
-        <div className="flex items-center gap-3">
-          <div className="w-12 sm:w-24 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-          <div className="w-1.5 h-1.5 rounded-full bg-accent/30" />
-          <div className="w-12 sm:w-24 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-        </div>
-      </div>
+      <TechMarquee />
       <About />
-      <div className="relative z-10 flex items-center justify-center">
-        <div className="flex items-center gap-3">
-          <div className="w-12 sm:w-24 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-          <div className="w-1.5 h-1.5 rounded-full bg-accent/30" />
-          <div className="w-12 sm:w-24 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-        </div>
-      </div>
+      <Experience />
+      <Skills />
       <Services />
-      <div className="relative z-10 flex items-center justify-center">
-        <div className="flex items-center gap-3">
-          <div className="w-12 sm:w-24 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-          <div className="w-1.5 h-1.5 rounded-full bg-accent/30" />
-          <div className="w-12 sm:w-24 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-        </div>
-      </div>
-      <Certificates />
-      <div className="relative z-10 flex items-center justify-center">
-        <div className="flex items-center gap-3">
-          <div className="w-12 sm:w-24 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-          <div className="w-1.5 h-1.5 rounded-full bg-accent/30" />
-          <div className="w-12 sm:w-24 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-        </div>
-      </div>
       <Portfolio />
-      <div className="relative z-10 flex items-center justify-center">
-        <div className="flex items-center gap-3">
-          <div className="w-12 sm:w-24 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-          <div className="w-1.5 h-1.5 rounded-full bg-accent/30" />
-          <div className="w-12 sm:w-24 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-        </div>
-      </div>
+      <Certificates />
+      <Blog />
       <Contact />
       <Footer />
       <Chatbot />
+      <BackToTop />
     </>
   );
 }

@@ -3,24 +3,62 @@ import { NextResponse } from "next/server";
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 
+const rateLimit = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_WINDOW = 60_000;
+const RATE_LIMIT_MAX = 20;
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimit.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimit.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
+    return true;
+  }
+  if (entry.count >= RATE_LIMIT_MAX) return false;
+  entry.count++;
+  return true;
+}
+
 const SYSTEM_PROMPT = `You are Habib Ul Haq's AI assistant on his portfolio website. Respond in a warm, professional tone.
 
 ABOUT HABIB:
-- Full-Stack & Agentic AI Developer
-- Expertise: Next.js, React, TypeScript, Tailwind CSS, Python, FastAPI, LangChain, PHP
-- Databases: PostgreSQL, MongoDB, MySQL, SQLite, Redis, ChromaDB
-- AI: RAG pipelines, LLM integration (OpenAI, Ollama, OpenRouter, Hugging Face), vector embeddings
-- DevOps: Docker, Vercel, Railway, Render, Git
+- Junior Manager Warehouse (Pharma) at Muller & Phipps Pakistan (Pvt.) Ltd, Karachi — 15+ years in supply chain & warehouse management
+- Full-Stack & Agentic AI Developer (self-taught, exploring GIAIC & PIAIC programs since 2024)
+- Location: Karachi, Pakistan
 
-PROJECTS (be ready to discuss these):
-1. CostCalc AI — Logistics cost optimization with route planning and courier vs vehicle comparison
-2. SOP Expert AI — RAG-based document Q&A with multi-LLM support via Ollama
-3. ProjectFlow — Full SaaS project management with Kanban, chat, file sharing, time tracking
-4. Excel Flattener — AI-powered Excel cleaning tool for messy BI Publisher spreadsheets
-5. Investment Strategy Calculator — Dubai real estate vs equity financial modeling tool
-6. SOP Reader & AI Chatbot — Multi-provider hybrid search document chatbot
-7. 3D Portfolio Website — Vanilla TypeScript portfolio with typewriter and scroll animations
-8. This Portfolio Website — Next.js 16, Framer Motion, AI chatbot, MongoDB
+CAREER TIMELINE:
+- Oct 2011 — Sep 2014: Data Processing Officer, Muller & Phipps
+- Sep 2014 — Jul 2019: Assistant Warehouse In-charge (Pharma), Muller & Phipps
+- Aug 2019 — Dec 2021: Warehouse Incharge (Pharma), Muller & Phipps
+- Jan 2022 — Present: Junior Manager Warehouse (Pharma), Muller & Phipps
+- 2024 — Present: AI & Full-Stack Development Journey
+
+TECHNICAL SKILLS:
+- Frontend: HTML/CSS, JavaScript, TypeScript, React.js, Next.js, Tailwind CSS
+- Backend: Python, FastAPI, Node.js, PostgreSQL, MySQL
+- AI & Automation: Agentic AI, LangChain, RAG Systems, OpenAI APIs, AI Chatbots
+- Tools: Git & GitHub, Docker, Vercel, CI/CD
+
+PROJECTS (featured on his portfolio):
+1. CostCalc AI — Logistics cost optimisation platform comparing courier vs dedicated vehicle shipping with route optimisation and slab-based pricing. Tech: Next.js, React, FastAPI, PostgreSQL, Docker, Redis
+2. SOP Expert AI — Open-source RAG application for querying SOP documents with strict grounding, streaming SSE responses, multi-LLM support, and fully local processing via Ollama. Tech: Next.js, FastAPI, LangChain, ChromaDB, Ollama, SQLite
+3. ProjectFlow — Full-featured project management platform with Kanban boards, file sharing, internal messaging, time tracking, role-based access, and analytics. Tech: PHP, MySQL, JavaScript, Chart.js
+4. Excel Flattener — AI-powered Excel intelligence tool that un-merges cells, detects multi-row headers, and extracts clean structured data from messy spreadsheets. Tech: Next.js, TypeScript, Python, FastAPI, pandas, openpyxl
+
+SERVICES OFFERED:
+- AI Chatbot Development (RAG pipelines, AI chatbots, document Q&A, multi-LLM support)
+- Portfolio Website Development (Next.js, React, TypeScript, Tailwind CSS, SEO optimised)
+- Business Automation Solutions (process automation, data extraction, AI agents, Excel processing)
+- Custom SaaS Development (full-stack SaaS with auth, billing, dashboards, API development)
+
+CERTIFICATIONS (DigiSkills):
+- Freelancing, Graphic Design, WordPress, Communication & Soft Skills
+
+CONTACT:
+- LinkedIn: linkedin.com/in/habib-ul-haq
+- GitHub: github.com/habib-dev92
+- WhatsApp: +92 333 2241601
+- Contact form on the website saves messages to a database
 
 RESPONSE FORMATTING RULES:
 - Use **bold** for emphasis on key terms, technologies, and project names
@@ -52,7 +90,7 @@ async function queryGemini(messages: { role: string; content: string }[]) {
   );
 
   const data = await res.json();
-  if (!res.ok) throw new Error(data?.error?.message || `Gemini error: ${res.status}`);
+  if (!res.ok) throw new Error("Upstream API error");
 
   const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
   return { choices: [{ message: { role: "assistant", content: text } }] };
@@ -79,13 +117,36 @@ async function queryOpenRouter(messages: { role: string; content: string }[]) {
   });
 
   const data = await res.json();
-  if (!res.ok) throw new Error(data?.error?.message || `OpenRouter error: ${res.status}`);
+  if (!res.ok) throw new Error("Upstream API error");
   return data;
 }
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json(
+        { error: "Too many requests. Please wait before sending another message." },
+        { status: 429 }
+      );
+    }
+
     const { messages } = await request.json();
+
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return NextResponse.json(
+        { error: "Messages array is required" },
+        { status: 400 }
+      );
+    }
+
+    const totalChars = messages.reduce((sum: number, m: { role?: string; content?: string }) => sum + (m.content?.length || 0), 0);
+    if (totalChars > 10000) {
+      return NextResponse.json(
+        { error: "Message too long. Please shorten your message." },
+        { status: 400 }
+      );
+    }
 
     if (OPENROUTER_API_KEY) {
       const result = await queryOpenRouter(messages);
@@ -107,7 +168,7 @@ export async function POST(request: Request) {
   } catch (error: any) {
     console.error("Chat API error:", error);
     return NextResponse.json(
-      { error: error.message || "Internal server error" },
+      { error: "Something went wrong. Please try again later." },
       { status: 500 }
     );
   }

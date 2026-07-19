@@ -45,6 +45,15 @@ yarn-error.log*
 # nested git repo (accidentally tracked)
 /portfolio-website
 
+# personal CV / resume
+CV Habib.pdf
+CV*.pdf
+resume*.pdf
+
+# project notes & drafts
+redesign.md
+notes*.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
