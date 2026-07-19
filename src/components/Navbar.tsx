@@ -103,12 +103,14 @@ export default function Navbar() {
       <div
         className={`absolute inset-0 transition-all duration-700 ease-out ${
           scrolled
-            ? "bg-background/70 backdrop-blur-2xl shadow-[0_0_40px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_0_40px_-15px_rgba(0,0,0,0.6)] border-b border-border/40"
-            : "bg-background/10 backdrop-blur-sm"
+            ? "bg-background/95 backdrop-blur-xl shadow-[0_4px_30px_-10px_rgba(0,0,0,0.25)] dark:shadow-[0_4px_30px_-10px_rgba(0,0,0,0.5)] border-b border-border/50"
+            : "bg-background/85 backdrop-blur-xl shadow-sm"
         }`}
       />
 
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-accent/[0.015] to-transparent pointer-events-none" />
+
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-border/60 to-transparent" />
 
       <div
         className="absolute bottom-0 left-0 h-px bg-gradient-to-r from-accent via-accent-dark to-transparent transition-all duration-300 ease-out"
