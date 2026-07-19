@@ -103,8 +103,8 @@ export default function Navbar() {
       <div
         className={`absolute inset-0 transition-all duration-700 ease-out ${
           scrolled
-            ? "bg-background/95 backdrop-blur-xl shadow-[0_4px_30px_-10px_rgba(0,0,0,0.25)] dark:shadow-[0_4px_30px_-10px_rgba(0,0,0,0.5)] border-b border-border/50"
-            : "bg-background/85 backdrop-blur-xl shadow-sm"
+            ? "bg-background max-md:border-b-2 max-md:border-border/60 md:bg-background/95 md:backdrop-blur-xl shadow-[0_4px_30px_-10px_rgba(0,0,0,0.25)] dark:shadow-[0_4px_30px_-10px_rgba(0,0,0,0.5)] border-b border-border/50"
+            : "bg-background max-md:border-b-2 max-md:border-border/40 md:bg-background/95 md:backdrop-blur-xl md:shadow-sm"
         }`}
       />
 
@@ -117,10 +117,10 @@ export default function Navbar() {
         style={{ width: `${scrollProgress * 100}%` }}
       />
 
-      <nav className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+      <nav className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-2.5 sm:py-4">
         <a href="/" className="flex items-center gap-2.5 sm:gap-3 group">
           <div className="relative shrink-0">
-            <div className="relative h-8 w-8 sm:h-10 sm:w-10 rounded-full overflow-hidden ring-1 ring-border group-hover:ring-accent/50 transition-all duration-500">
+            <div className="relative h-9 w-9 sm:h-10 sm:w-10 rounded-full overflow-hidden ring-2 ring-border/60 group-hover:ring-accent/50 transition-all duration-500">
               <Image src="/logo.jpeg" alt="Habib Ul Haq" fill className="object-cover" />
             </div>
             <motion.div
@@ -196,39 +196,39 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="md:hidden flex items-center gap-2">
+        <div className="md:hidden flex items-center gap-1.5">
           <button
             onClick={toggleDark}
-            className="w-9 h-9 rounded-lg bg-card border border-border flex items-center justify-center text-muted"
+            className="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center text-muted hover:text-accent hover:border-accent/30 active:scale-95 transition-all duration-200"
             aria-label="Toggle theme"
           >
             {mounted ? (dark ? (
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
               </svg>
             ) : (
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
               </svg>
-            )) : <div className="w-4 h-4" />}
+            )) : <div className="w-[18px] h-[18px]" />}
           </button>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="relative z-50 flex flex-col items-end gap-1.5 p-2"
+            className="relative z-50 w-10 h-10 rounded-xl bg-card border border-border flex flex-col items-center justify-center gap-1 hover:border-accent/30 active:scale-95 transition-all duration-200"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
             <motion.span
-              animate={mobileOpen ? { rotate: 45, y: 5.5, width: 20 } : { rotate: 0, y: 0, width: 20 }}
-              className="block h-[1.5px] bg-foreground rounded-full origin-center"
+              animate={mobileOpen ? { rotate: 45, y: 5.5, width: 18 } : { rotate: 0, y: 0, width: 18 }}
+              className="block h-[2px] bg-foreground rounded-full origin-center"
             />
             <motion.span
               animate={mobileOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
-              className="block h-[1.5px] bg-foreground rounded-full"
-              style={{ width: 16 }}
+              className="block h-[2px] bg-foreground rounded-full"
+              style={{ width: 14 }}
             />
             <motion.span
-              animate={mobileOpen ? { rotate: -45, y: -5.5, width: 20 } : { rotate: 0, y: 0, width: 20 }}
-              className="block h-[1.5px] bg-foreground rounded-full origin-center"
+              animate={mobileOpen ? { rotate: -45, y: -5.5, width: 18 } : { rotate: 0, y: 0, width: 18 }}
+              className="block h-[2px] bg-foreground rounded-full origin-center"
             />
           </button>
         </div>
