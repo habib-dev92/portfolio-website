@@ -154,13 +154,13 @@ export default function Hero() {
               <div className="relative group">
                 <div className="absolute -inset-[2px] rounded-[17px] bg-gradient-to-br from-accent via-primary to-accent-dark opacity-40 blur-[2px] animate-mesh" />
                 <div className="absolute -inset-[2px] rounded-[17px] bg-gradient-to-tr from-primary/60 via-accent/40 to-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="relative w-48 sm:w-52 md:w-72 lg:w-80 aspect-[2/3] rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl shadow-accent/15">
+                <div className="relative w-56 sm:w-52 md:w-72 lg:w-80 aspect-[2/3] rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl shadow-accent/15">
                   <Image
                     src="/habib-picture.png"
                     alt="Habib Ul Haq"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 640px) 192px, (max-width: 768px) 208px, 288px"
+                    sizes="(max-width: 640px) 224px, (max-width: 768px) 208px, 288px"
                   />
                 </div>
                 <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 z-20">
