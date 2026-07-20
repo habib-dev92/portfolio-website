@@ -117,10 +117,10 @@ export default function Navbar() {
 
       <nav className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-1.5 md:py-4">
         <a href="/" className="flex items-center gap-2 min-h-9 group">
-          <div className="relative h-6 w-6 sm:h-10 sm:w-10 shrink-0 rounded-full overflow-hidden ring-2 ring-slate-600 transition-all duration-300 group-hover:ring-accent/60">
+          <div className="relative h-8 w-8 sm:h-10 sm:w-10 shrink-0 rounded-full overflow-hidden ring-2 ring-slate-600 transition-all duration-300 group-hover:ring-accent/60">
             <Image src="/logo.jpeg" alt="Habib Ul Haq" fill className="object-cover" />
           </div>
-          <span className="text-xs sm:text-lg font-bold tracking-tight text-white">
+          <span className="text-sm sm:text-lg font-bold tracking-tight text-white">
             Habib<span className="text-accent">.</span>dev
           </span>
         </a>
