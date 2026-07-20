@@ -115,12 +115,12 @@ export default function Navbar() {
         style={{ width: `${scrollProgress * 100}%` }}
       />
 
-      <nav className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 md:py-4">
-        <a href="/" className="flex items-center gap-3 min-h-11 group">
-          <div className="relative h-9 w-9 sm:h-10 sm:w-10 shrink-0 rounded-full overflow-hidden ring-2 ring-slate-600 transition-all duration-300 group-hover:ring-accent/60">
+      <nav className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-1.5 md:py-4">
+        <a href="/" className="flex items-center gap-2 min-h-9 group">
+          <div className="relative h-6 w-6 sm:h-10 sm:w-10 shrink-0 rounded-full overflow-hidden ring-2 ring-slate-600 transition-all duration-300 group-hover:ring-accent/60">
             <Image src="/logo.jpeg" alt="Habib Ul Haq" fill className="object-cover" />
           </div>
-          <span className="text-base sm:text-lg font-bold tracking-tight text-white">
+          <span className="text-xs sm:text-lg font-bold tracking-tight text-white">
             Habib<span className="text-accent">.</span>dev
           </span>
         </a>
@@ -196,7 +196,7 @@ export default function Navbar() {
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden relative z-50 w-11 h-11 rounded-xl flex items-center justify-center text-white transition-all duration-200"
+          className="md:hidden relative z-50 w-8 h-8 rounded-xl flex items-center justify-center text-white transition-all duration-200"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
           <div className="relative w-5 h-5">
