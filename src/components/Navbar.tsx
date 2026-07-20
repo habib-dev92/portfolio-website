@@ -108,7 +108,7 @@ export default function Navbar() {
         hidden ? "-translate-y-full" : "translate-y-0"
       }`}
     >
-      <div className="absolute inset-0 bg-slate-900 border-b border-slate-700/60" />
+      <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-xl border-b border-slate-700/60" />
 
       <div
         className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-accent via-accent-dark to-accent transition-all duration-300"
@@ -237,7 +237,7 @@ export default function Navbar() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
-              className="relative z-50 overflow-hidden md:hidden bg-slate-900 border-b border-slate-700/60 shadow-2xl"
+              className="relative z-50 overflow-hidden md:hidden bg-slate-900/95 backdrop-blur-xl border-b border-slate-700/60 shadow-2xl"
             >
               <div className="px-4 pb-6 pt-2">
                 <div className="flex items-center justify-between mb-4 px-1">

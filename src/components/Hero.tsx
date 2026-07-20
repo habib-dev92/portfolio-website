@@ -15,12 +15,20 @@ export default function Hero() {
       </div>
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] left-[5%] w-2 h-2 rounded-full bg-accent/40 blur-[3px] animate-float-slow" />
-        <div className="absolute top-[35%] right-[10%] w-1.5 h-1.5 rounded-full bg-primary/30 blur-[3px] animate-float-slow" style={{ animationDelay: "-4s" }} />
-        <div className="absolute bottom-[30%] left-[12%] w-2.5 h-2.5 rounded-full bg-accent/30 blur-[3px] animate-float-slow" style={{ animationDelay: "-6s" }} />
-        <div className="absolute bottom-[20%] right-[5%] w-2 h-2 rounded-full bg-primary/35 blur-[3px] animate-float-slow" style={{ animationDelay: "-9s" }} />
-        <div className="absolute top-[55%] left-[35%] w-1 h-1 rounded-full bg-accent/40 blur-[2px] animate-float-slow" style={{ animationDelay: "-12s" }} />
-        <div className="absolute top-[15%] right-[25%] w-1.5 h-1.5 rounded-full bg-primary/25 blur-[3px] animate-float-slow" style={{ animationDelay: "-14s" }} />
+        {[
+          { top: "10%", left: "5%", size: "w-2 h-2", delay: "0s" },
+          { top: "35%", right: "10%", size: "w-1.5 h-1.5", delay: "-4s" },
+          { bottom: "30%", left: "12%", size: "w-2.5 h-2.5", delay: "-6s" },
+          { bottom: "20%", right: "5%", size: "w-2 h-2", delay: "-9s" },
+          { top: "55%", left: "35%", size: "w-1 h-1", delay: "-12s" },
+          { top: "15%", right: "25%", size: "w-1.5 h-1.5", delay: "-14s" },
+        ].map((dot, i) => (
+          <div
+            key={i}
+            className={`absolute ${dot.size} rounded-full ${i % 2 === 0 ? "bg-accent/40" : "bg-primary/30"} blur-[3px] animate-float-slow`}
+            style={{ top: dot.top, left: dot.left, bottom: dot.bottom, right: dot.right, animationDelay: dot.delay } as React.CSSProperties}
+          />
+        ))}
       </div>
 
       <div className="absolute inset-0 bg-grid" />
@@ -66,7 +74,7 @@ export default function Hero() {
                   hidden: { opacity: 0, y: 60, filter: "blur(8px)" },
                   visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] } },
                 }}
-                className="block text-accent"
+                className="block text-gradient"
               >
                 Solutions
               </motion.span>
@@ -110,7 +118,7 @@ export default function Hero() {
             >
               <a
                 href="/#projects"
-                className="group relative px-8 py-3.5 rounded-xl overflow-hidden shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-shadow duration-500 text-center"
+                className="group relative px-8 py-3.5 rounded-xl overflow-hidden shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-all duration-500 text-center"
               >
                 <span className="absolute inset-0 bg-accent" />
                 <span className="absolute inset-0 bg-gradient-to-r from-accent to-accent-dark opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -154,6 +162,10 @@ export default function Hero() {
               <div className="relative group">
                 <div className="absolute -inset-[2px] rounded-[17px] bg-gradient-to-br from-accent via-primary to-accent-dark opacity-40 blur-[2px] animate-mesh" />
                 <div className="absolute -inset-[2px] rounded-[17px] bg-gradient-to-tr from-primary/60 via-accent/40 to-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                <div className="absolute -inset-6 rounded-full border border-accent/10 opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" />
+                <div className="absolute -inset-10 rounded-full border border-accent/5 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100 group-hover:scale-110" />
+
                 <div className="relative w-56 sm:w-52 md:w-72 lg:w-80 aspect-[2/3] rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl shadow-accent/15">
                   <Image
                     src="/habib-picture.png"
@@ -162,17 +174,24 @@ export default function Hero() {
                     className="object-cover"
                     sizes="(max-width: 640px) 224px, (max-width: 768px) 208px, 288px"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent" />
                 </div>
+
                 <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 z-20">
-                  <div className="flex items-center gap-1.5 sm:gap-2 bg-background/80 backdrop-blur-sm border border-border/60 rounded-lg px-2 sm:px-3 py-1 sm:py-1.5 shadow-sm hover:shadow-accent/5 hover:border-accent/30 transition-all duration-300">
-                    <span className="relative flex w-1.5 h-1.5 sm:w-2 sm:h-2">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.5, duration: 0.4 }}
+                    className="flex items-center gap-1.5 sm:gap-2 bg-background/90 backdrop-blur-md border border-accent/20 rounded-lg px-2.5 sm:px-3 py-1.5 sm:py-1.5 shadow-lg shadow-accent/10"
+                  >
+                    <span className="relative flex w-2 h-2">
                       <span className="absolute inset-0 rounded-full bg-accent" />
-                      <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-40" />
+                      <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-50" />
                     </span>
-                    <span className="text-[8px] sm:text-[10px] font-medium text-muted tracking-wide">
-                      Open to opportunities
+                    <span className="text-[8px] sm:text-[10px] font-semibold text-accent tracking-wide">
+                      Open for Opportunities
                     </span>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
@@ -193,7 +212,11 @@ export default function Hero() {
             <span className="text-[10px] text-muted/50 tracking-[0.3em] uppercase">
               Scroll
             </span>
-            <div className="w-px h-10 bg-gradient-to-b from-muted/30 to-accent/20" />
+            <motion.div
+              className="w-px h-10 bg-gradient-to-b from-muted/30 to-accent/20"
+              animate={{ opacity: [0.3, 0.8, 0.3] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
           </motion.div>
         </motion.div>
       </div>

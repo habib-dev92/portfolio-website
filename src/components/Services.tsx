@@ -125,9 +125,11 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-20 sm:py-32 overflow-hidden before:absolute before:top-0 before:left-4 sm:before:left-6 lg:before:left-8 before:right-4 sm:before:right-6 lg:before:right-8 before:h-px before:bg-gradient-to-r before:from-transparent before:via-border before:to-transparent">
+    <section id="services" className="relative py-20 sm:py-32 overflow-hidden">
+      <div className="section-divider" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.03),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.03),transparent_50%)]" />
+      <div className="absolute inset-0 bg-dot-grid" />
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading label="Services" title="What I Offer" highlight="I Offer" />
 

@@ -20,16 +20,6 @@ export default function SectionHeading({ label, title, highlight, subtitle }: Se
       transition={{ duration: 0.5 }}
       className="mb-14 sm:mb-20 relative"
     >
-      <div className="absolute -top-4 -left-4 sm:-left-6 w-24 h-24 sm:w-36 sm:h-36 opacity-[0.03] pointer-events-none select-none">
-        <svg viewBox="0 0 100 100" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="0.5">
-          <circle cx="50" cy="50" r="40" className="text-accent" />
-          <circle cx="50" cy="50" r="25" className="text-accent" />
-          <circle cx="50" cy="50" r="10" className="text-accent" />
-          <line x1="10" y1="50" x2="90" y2="50" className="text-accent" />
-          <line x1="50" y1="10" x2="50" y2="90" className="text-accent" />
-        </svg>
-      </div>
-
       <motion.span
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -41,7 +31,10 @@ export default function SectionHeading({ label, title, highlight, subtitle }: Se
           <span className="absolute inset-0 rounded-full bg-accent" />
           <span className="absolute inset-0 rounded-full bg-accent animate-ping opacity-40" />
         </span>
-        {label}
+        <span className="relative">
+          {label}
+          <span className="absolute -bottom-px left-0 right-0 h-px bg-gradient-to-r from-accent/40 to-transparent" />
+        </span>
       </motion.span>
 
       <motion.h2
@@ -54,16 +47,8 @@ export default function SectionHeading({ label, title, highlight, subtitle }: Se
         {hasHighlight ? (
           <>
             {title.slice(0, title.indexOf(highlight))}
-            <span className="text-accent relative inline-block">
+            <span className="text-gradient relative inline-block">
               {highlight}
-              <motion.span
-                className="absolute -bottom-1.5 left-0 right-0 h-1 bg-gradient-to-r from-accent/40 via-accent/20 to-transparent rounded-full"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                style={{ transformOrigin: "left" }}
-              />
             </span>
             {title.slice(title.indexOf(highlight) + highlight.length)}
           </>
@@ -71,6 +56,14 @@ export default function SectionHeading({ label, title, highlight, subtitle }: Se
           title
         )}
       </motion.h2>
+
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className="h-[2px] w-16 sm:w-24 bg-gradient-to-r from-accent via-accent/40 to-transparent rounded-full mt-4 origin-left"
+      />
 
       {subtitle && (
         <motion.p

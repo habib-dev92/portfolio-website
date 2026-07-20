@@ -56,10 +56,11 @@ export default function About() {
 
   return (
     <section id="about" className="relative py-20 sm:py-32 overflow-hidden">
+      <div className="section-divider" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(37,99,235,0.04),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(6,182,212,0.03),transparent_50%)]" />
-      <div className="absolute inset-0 bg-grid" />
+      <div className="absolute inset-0 bg-dot-grid" />
 
       <div ref={sectionRef} className="max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeading label="About" title="Who I Am" highlight="I Am" />

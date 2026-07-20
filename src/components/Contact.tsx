@@ -74,7 +74,7 @@ function ContactCard({ info, index }: { info: typeof contactInfo[0]; index: numb
           href={info.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:bg-accent/[0.03] hover:border-accent/30 transition-all duration-300"
+          className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:bg-accent/[0.03] hover:border-accent/30 hover:-translate-y-0.5 transition-all duration-300"
         >
           {content}
         </a>
@@ -84,6 +84,56 @@ function ContactCard({ info, index }: { info: typeof contactInfo[0]; index: numb
         </div>
       )}
     </motion.div>
+  );
+}
+
+function FloatingInput({
+  id, label, type, value, onChange, placeholder, icon, required, isTextarea,
+}: {
+  id: string; label: string; type?: string; value: string; onChange: (v: string) => void;
+  placeholder?: string; icon?: React.ReactNode; required?: boolean; isTextarea?: boolean;
+}) {
+  const [focused, setFocused] = useState(false);
+  const hasValue = value.length > 0;
+  const isFloating = focused || hasValue;
+
+  const inputClasses = `w-full px-4 pt-6 pb-2 bg-background border border-border rounded-xl text-sm text-foreground placeholder-transparent focus:outline-none focus:border-accent/40 focus:bg-accent/[0.02] transition-all duration-300 peer`;
+
+  return (
+    <div className="group relative">
+      <label htmlFor={id} className="block text-xs text-muted mb-2 font-medium tracking-wide uppercase flex items-center gap-2">
+        {icon && <span className="text-muted">{icon}</span>}
+        {label}
+      </label>
+      <div className="relative">
+        {isTextarea ? (
+          <textarea
+            id={id}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            placeholder={placeholder || label}
+            rows={5}
+            required={required}
+            className={inputClasses + " resize-none"}
+          />
+        ) : (
+          <input
+            id={id}
+            type={type || "text"}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            placeholder={placeholder || label}
+            required={required}
+            className={inputClasses}
+          />
+        )}
+        <div className="absolute bottom-0 left-2 right-2 h-px bg-gradient-to-r from-accent/40 via-accent/20 to-transparent scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
+      </div>
+    </div>
   );
 }
 
@@ -117,7 +167,7 @@ export default function Contact() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(37,99,235,0.05),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(6,182,212,0.03),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(6,182,212,0.04),transparent_50%)]" />
-      <div className="absolute inset-0 bg-grid" />
+      <div className="absolute inset-0 bg-dot-grid" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -193,88 +243,62 @@ export default function Contact() {
                     className="relative z-10 space-y-5"
                   >
                     <div className="grid sm:grid-cols-2 gap-5">
-                      <div className="group relative">
-                        <label htmlFor="contact-name" className="block text-xs text-muted mb-2 font-medium tracking-wide uppercase flex items-center gap-2">
-                          <svg className="w-3.5 h-3.5 text-muted" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                      <FloatingInput
+                        id="contact-name"
+                        label="Your Name"
+                        value={formData.name}
+                        onChange={(v) => setFormData({ ...formData, name: v })}
+                        placeholder="John Doe"
+                        required
+                        icon={
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                             <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                           </svg>
-                          Your Name
-                        </label>
-                        <div className="relative">
-                          <input
-                            id="contact-name"
-                            type="text"
-                            value={formData.name}
-                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            placeholder="John Doe"
-                            required
-                            className="w-full px-4 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder-muted/50 focus:outline-none focus:border-accent/40 focus:bg-accent/[0.02] transition-all duration-300 peer"
-                          />
-                          <div className="absolute bottom-0 left-2 right-2 h-px bg-gradient-to-r from-accent/40 via-accent/20 to-transparent scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
-                        </div>
-                      </div>
-                      <div className="group relative">
-                        <label htmlFor="contact-email" className="block text-xs text-muted mb-2 font-medium tracking-wide uppercase flex items-center gap-2">
-                          <svg className="w-3.5 h-3.5 text-muted" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                        }
+                      />
+                      <FloatingInput
+                        id="contact-email"
+                        label="Your Email"
+                        type="email"
+                        value={formData.email}
+                        onChange={(v) => setFormData({ ...formData, email: v })}
+                        placeholder="john@example.com"
+                        required
+                        icon={
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                             <path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                           </svg>
-                          Your Email
-                        </label>
-                        <div className="relative">
-                          <input
-                            id="contact-email"
-                            type="email"
-                            value={formData.email}
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            placeholder="john@example.com"
-                            required
-                            className="w-full px-4 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder-muted/50 focus:outline-none focus:border-accent/40 focus:bg-accent/[0.02] transition-all duration-300 peer"
-                          />
-                          <div className="absolute bottom-0 left-2 right-2 h-px bg-gradient-to-r from-accent/40 via-accent/20 to-transparent scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
-                        </div>
-                      </div>
+                        }
+                      />
                     </div>
 
-                    <div className="group relative">
-                      <label htmlFor="contact-subject" className="block text-xs text-muted mb-2 font-medium tracking-wide uppercase flex items-center gap-2">
-                        <svg className="w-3.5 h-3.5 text-muted" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                    <FloatingInput
+                      id="contact-subject"
+                      label="Subject"
+                      value={formData.subject}
+                      onChange={(v) => setFormData({ ...formData, subject: v })}
+                      placeholder="Project Inquiry"
+                      icon={
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                           <path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                         </svg>
-                        Subject
-                      </label>
-                      <div className="relative">
-                        <input
-                          id="contact-subject"
-                          type="text"
-                          value={formData.subject}
-                          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                          placeholder="Project Inquiry"
-                          className="w-full px-4 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder-muted/50 focus:outline-none focus:border-accent/40 focus:bg-accent/[0.02] transition-all duration-300 peer"
-                        />
-                        <div className="absolute bottom-0 left-2 right-2 h-px bg-gradient-to-r from-accent/40 via-accent/20 to-transparent scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
-                      </div>
-                    </div>
+                      }
+                    />
 
-                    <div className="group relative">
-                      <label htmlFor="contact-message" className="block text-xs text-muted mb-2 font-medium tracking-wide uppercase flex items-center gap-2">
-                        <svg className="w-3.5 h-3.5 text-muted" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                    <FloatingInput
+                      id="contact-message"
+                      label="Your Message"
+                      value={formData.message}
+                      onChange={(v) => setFormData({ ...formData, message: v })}
+                      placeholder="Tell me about your project..."
+                      required
+                      isTextarea
+                      icon={
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                           <path d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
                         </svg>
-                        Your Message
-                      </label>
-                      <div className="relative">
-                        <textarea
-                          id="contact-message"
-                          value={formData.message}
-                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                          placeholder="Tell me about your project..."
-                          rows={5}
-                          required
-                          className="w-full px-4 py-3 bg-background border border-border rounded-xl text-sm text-foreground placeholder-muted/50 focus:outline-none focus:border-accent/40 focus:bg-accent/[0.02] transition-all duration-300 resize-none peer"
-                        />
-                        <div className="absolute bottom-0 left-2 right-2 h-px bg-gradient-to-r from-accent/40 via-accent/20 to-transparent scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
-                      </div>
-                    </div>
+                      }
+                    />
 
                     <div className="flex items-center justify-between pt-2">
                       <div className="flex flex-col gap-1">
